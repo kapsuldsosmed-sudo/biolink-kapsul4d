@@ -94,44 +94,56 @@ export const BannerSlider: React.FC<BannerSliderProps> = ({ banners }) => {
         {/* Running Electric Lightning Border */}
         <RunningLightningBorder color="cyan" speedMultiplier={0.9} />
 
-        {/* Carousel Image Track (16:9 responsive aspect ratio) */}
-        <div className="relative w-full aspect-[16/9] sm:aspect-[16/8.5] overflow-hidden">
-          {slides.map((slide, index) => (
-            <div
-              key={slide.id || index}
-              className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-                index === currentIndex ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 pointer-events-none z-0'
-              }`}
-            >
-              <img
-                src={slide.imageUrl}
-                alt={slide.title}
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover select-none"
-              />
+        {/* Carousel Image Track (Smart Responsive Aspect Ratio) */}
+<div className="relative w-full aspect-[16/9] sm:aspect-[16/8] min-h-[180px] sm:min-h-[220px] overflow-hidden bg-slate-950/90 flex items-center justify-center">
+  {slides.map((slide, index) => (
+    <div
+      key={slide.id || index}
+      className={`absolute inset-0 transition-opacity duration-700 ease-in-out flex items-center justify-center ${
+        index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none z-0'
+      }`}
+    >
+      {/* 1. Latar Belakang Blur Otomatis (Agar gambar ukuran apapun tetap estetik dan tidak ada ruang kosong) */}
+      <img
+        src={slide.imageUrl}
+        alt=""
+        aria-hidden="true"
+        referrerPolicy="no-referrer"
+        className="absolute inset-0 w-full h-full object-cover blur-lg scale-110 opacity-40 select-none pointer-events-none"
+      />
 
-              {/* Gradient Dark Overlay for legible typography */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+      {/* 2. Gambar Utama Responsif (Otomatis menyesuaikan layar, tajam, dan tidak gepeng) */}
+      <img
+        src={slide.imageUrl}
+        alt={slide.title}
+        referrerPolicy="no-referrer"
+        className="relative z-10 w-full h-full object-cover sm:object-cover object-center select-none"
+        loading="lazy"
+      />
 
-              {/* Slide Content Overlay */}
-              <div className="absolute bottom-0 inset-x-0 p-4 sm:p-5 flex flex-col justify-end text-left z-20">
-                {slide.tag && (
-                  <span className="inline-flex items-center gap-1 self-start mb-1.5 px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-wider bg-cyan-500/30 border border-cyan-400/80 text-cyan-200 shadow-[0_0_12px_rgba(6,182,212,0.6)]">
-                    <Zap className="w-2.5 h-2.5 fill-current" />
-                    {slide.tag}
-                  </span>
-                )}
+      {/* 3. Lapisan Gradasi Gelap (Agar teks banner di atas gambar selalu terbaca jelas) */}
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent z-10 pointer-events-none" />
 
-                <h3 className="text-sm sm:text-base font-black text-white tracking-wide drop-shadow-md text-glow-cyan">
-                  {slide.title}
-                </h3>
+      {/* 4. Teks Informasi Banner yang Responsif */}
+      <div className="absolute bottom-0 inset-x-0 p-3.5 sm:p-5 flex flex-col justify-end text-left z-20">
+        {slide.tag && (
+          <span className="inline-flex items-center gap-1 self-start mb-1 px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-wider bg-cyan-500/30 border border-cyan-400/80 text-cyan-200 shadow-[0_0_12px_rgba(6,182,212,0.6)] backdrop-blur-sm">
+            <Zap className="w-2.5 h-2.5 fill-current" />
+            {slide.tag}
+          </span>
+        )}
 
-                <p className="text-xs text-cyan-100/80 line-clamp-2 mt-0.5 drop-shadow">
-                  {slide.description}
-                </p>
-              </div>
-            </div>
-          ))}
+        <h3 className="text-sm sm:text-base font-extrabold text-white tracking-wide drop-shadow-md leading-tight">
+          {slide.title}
+        </h3>
+
+        <p className="text-xs text-cyan-100/85 line-clamp-2 mt-0.5 drop-shadow">
+          {slide.description}
+        </p>
+      </div>
+    </div>
+  ))}
+</div>
 
           {/* Lightbox / Zoom Trigger Icon */}
           <button
