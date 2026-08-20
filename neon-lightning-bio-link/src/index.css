@@ -1,0 +1,189 @@
+@import "tailwindcss";
+
+@layer utilities {
+  /* Glowing text & box effects */
+  .text-glow-cyan {
+    text-shadow: 0 0 10px rgba(6, 182, 212, 0.7), 0 0 20px rgba(6, 182, 212, 0.4), 0 0 30px rgba(14, 165, 233, 0.3);
+  }
+  .text-glow-blue {
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.7), 0 0 20px rgba(37, 99, 235, 0.5);
+  }
+  .text-glow-emerald {
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.7), 0 0 20px rgba(5, 150, 105, 0.4);
+  }
+  .box-glow-cyan {
+    box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.5), inset 0 0 15px -3px rgba(6, 182, 212, 0.3);
+  }
+  .box-glow-blue {
+    box-shadow: 0 0 25px -5px rgba(59, 130, 246, 0.5), inset 0 0 15px -3px rgba(59, 130, 246, 0.3);
+  }
+  .glass-card {
+    background: rgba(10, 25, 47, 0.55);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+  }
+  .glass-card-hover {
+    background: rgba(12, 34, 64, 0.7);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(56, 189, 248, 0.45);
+  }
+}
+
+/* Running Laser Stroke (Kilat Berjalan di Tepi Border) */
+@keyframes runningLaserStroke {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -820;
+  }
+}
+
+.animate-running-laser-stroke {
+  animation: runningLaserStroke 3s linear infinite;
+}
+
+/* Running Circle Laser for Avatar Profile */
+@keyframes runningCircleLaser {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -450;
+  }
+}
+
+.animate-running-circle-laser {
+  animation: runningCircleLaser 2s linear infinite;
+}
+
+/* Horizontal Running Lightning Bolt across cards */
+@keyframes runningLightningHorizontal {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.animate-running-horizontal {
+  animation: runningLightningHorizontal 2.4s ease-in-out infinite;
+}
+
+/* Rotating Conic Electric Border */
+@keyframes electricRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-electric-border {
+  animation: electricRotate 3.5s linear infinite;
+}
+
+.animate-electric-border-fast {
+  animation: electricRotate 2s linear infinite;
+}
+
+/* Electric Lightning Flash */
+@keyframes lightningFlash {
+  0%, 100% {
+    opacity: 0;
+  }
+  92% {
+    opacity: 0;
+  }
+  93% {
+    opacity: 0.8;
+  }
+  94% {
+    opacity: 0.1;
+  }
+  96% {
+    opacity: 1;
+  }
+  98% {
+    opacity: 0.2;
+  }
+  99% {
+    opacity: 0.9;
+  }
+}
+
+.animate-lightning-flash {
+  animation: lightningFlash 7s infinite;
+}
+
+/* Infinite Marquee */
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Pulse electric glow */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.6;
+    filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.6));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 18px rgba(56, 189, 248, 0.95)) drop-shadow(0 0 30px rgba(6, 182, 212, 0.8));
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+/* Shimmer scanline */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(1000%);
+  }
+}
+
+.animate-scanline {
+  animation: scanline 8s linear infinite;
+}
+
+/* Flowing holographic text shimmer for seo kriting x kapsul4d */
+@keyframes textShimmerFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-text-shimmer {
+  background-size: 200% auto;
+  animation: textShimmerFlow 3s ease infinite;
+}
+

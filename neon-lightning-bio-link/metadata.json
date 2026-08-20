@@ -1,0 +1,6 @@
+{
+  "name": "Neon Lightning Bio Link",
+  "description": "A futuristic blue neon glassmorphism bio link page featuring electric lightning effects, running marquee ticker, 4 interactive animated glowing buttons, and responsive 3-photo banner slider.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
